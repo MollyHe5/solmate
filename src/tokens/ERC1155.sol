@@ -89,8 +89,9 @@ abstract contract ERC1155 {
         // Storing these outside the loop saves ~15 gas per iteration.
         uint256 id;
         uint256 amount;
+        uint256 len = ids.length;
 
-        for (uint256 i = 0; i < ids.length; ) {
+        for (uint256 i = 0; i < len; ) {
             id = ids[i];
             amount = amounts[i];
 
@@ -128,7 +129,8 @@ abstract contract ERC1155 {
         // Unchecked because the only math done is incrementing
         // the array index counter which cannot possibly overflow.
         unchecked {
-            for (uint256 i = 0; i < owners.length; ++i) {
+            uint256 len = owners.length;
+            for (uint256 i = 0; i < len; ++i) {
                 balances[i] = balanceOf[owners[i]][ids[i]];
             }
         }
